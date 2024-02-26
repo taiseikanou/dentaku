@@ -13,17 +13,22 @@ function number_key(val){
 	if(is_calc)	result.value = "0";
 	is_calc = false;	
 
-	if((result.value =="0" && val == "0")||(result.value =="0" && val == "00")){
-		result.value = "0";
-	}else if(result.value == "0" && val == "."){
-		result.value = "0.";
-	}else if(result.value == "0"){
-		result.value = val;
-	}else{
-		result.value += val;
-	}
+	if (val === '.') {
+		if (result.value.indexOf('.') === -1 && !is_ope_last()) {
+            result.value += val;
+        }
+		} else if((result.value =="0" && val == "0")||(result.value =="0" && val == "00")){
+			result.value = "0";
+		} else if(result.value == "0" && val == "."){
+			result.value = "0.";
+		} else if(result.value == "0"){
+			result.value = val;
+		} else {
+			result.value += val;
+		}
+
 }
-    
+
 function operator_key(val){
 	if(is_calc)	is_calc = false;
 	
