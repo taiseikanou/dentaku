@@ -14,9 +14,11 @@ function number_key(val){
 	is_calc = false;	
 
 	if (val === '.') {
-		if (result.value.indexOf('.') === -1 && !is_ope_last()) {
-            result.value += val;
+		if (is_decimal() ) {
+            result.value = result.value.slice(0, -1) + val;
         }
+		else if(!is_ope_last())
+		    result.value += val;
 		} else if((result.value =="0" && val == "0")||(result.value =="0" && val == "00")){
 			result.value = "0";
 		} else if(result.value == "0" && val == "."){
@@ -26,7 +28,10 @@ function number_key(val){
 		} else {
 			result.value += val;
 		}
+}
 
+function is_decimal(){
+	return ["."].includes(result.value.slice(-1));
 }
 
 function operator_key(val){
